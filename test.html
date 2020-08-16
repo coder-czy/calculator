@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text">
+    <button>解码</button>
+
+    <script>
+        var inp = document.getElementsByTagName('input')[0]
+        var btn = document.getElementsByTagName('button')[0]
+        btn.onclick = function() {
+            var val = inp.value
+            var start = val.indexOf('[')
+            var end = val.indexOf(']')
+            var s = changeStr(start, end, val)
+            console.log(s);
+
+
+        }
+
+        function changeStr(start, end, val) {
+
+            var str = ''
+            if (start != -1 && end != -1) {
+                var text = ''
+                var sStr = ''
+                if (val.slice(0, start - 2).indexOf('[') == -1) {
+                    sStr = val.slice(0, start - 2)
+                }
+                var vStr = val.slice(start + 1, end)
+                var num = val.slice(start - 1, start)
+                    // console.log(num);
+
+                for (var i = 0; i < num; i++) {
+                    text += vStr
+                }
+                str = text
+            } else {
+                return val
+            }
+            return str
+        }
+    </script>
+</body>
+
+</html>
